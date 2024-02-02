@@ -1,128 +1,132 @@
 package main
 
-import "fmt"
+import (
+	"example/hello/chapters_1_4"
+	"fmt"
+	"time"
+)
 
 func main() {
 	//functions call
-	test("Lane,", " happy birthday!")
-	test("Elon,", " hope that Tesla thing works out")
-	test("Go", " is fantastic")
+	chapters_1_4.Test("Lane,", " happy birthday!")
+	chapters_1_4.Test("Elon,", " hope that Tesla thing works out")
+	chapters_1_4.Test("Go", " is fantastic")
 
 	fmt.Println("-------------------")
 
 	//functions (+syntax sugar) call
-	addToDatabase(20, 9, "AsmaZ", 100)
+	chapters_1_4.AddToDatabase(20, 9, "AsmaZ", 100)
 
 	fmt.Println("-------------------")
 
 	//call sending function (passing variables by values)
-	sending()
+	chapters_1_4.Sending()
 
 	fmt.Println("-------------------")
 
 	//ignoring return values
-	names()
+	chapters_1_4.Names()
 
 	fmt.Println("-------------------")
 
 	//naked returns (explicit vs implicit)
-	fmt.Println(getCoords())
-	fmt.Println(getCoordsAlt())
+	fmt.Println(chapters_1_4.GetCoords())
+	fmt.Println(chapters_1_4.GetCoordsAlt())
 
 	fmt.Println("-------------------")
 
 	//assignement funcs
-	untilAge(4)
-	untilAge(10)
-	untilAge(18)
-	untilAge(22)
-	untilAge(34)
+	chapters_1_4.UntilAge(4)
+	chapters_1_4.UntilAge(10)
+	chapters_1_4.UntilAge(18)
+	chapters_1_4.UntilAge(22)
+	chapters_1_4.UntilAge(34)
 
 	fmt.Println("-------------------")
 
 	//explicit return
-	fmt.Println(getCoordsAlt2())
-	untilAgeAlt(4)
-	untilAgeAlt(22)
-	untilAgeAltImplicit(4)
-	untilAgeAltImplicit(22)
+	fmt.Println(chapters_1_4.GetCoordsAlt2())
+	chapters_1_4.UntilAgeAlt(4)
+	chapters_1_4.UntilAgeAlt(22)
+	chapters_1_4.UntilAgeAltImplicit(4)
+	chapters_1_4.UntilAgeAltImplicit(22)
 
 	fmt.Println("-------------------")
 
 	//guard clause
-	fmt.Println(divide(89, 6))
-	fmt.Println(divide(89, 0))
+	fmt.Println(chapters_1_4.Divide(89, 6))
+	fmt.Println(chapters_1_4.Divide(89, 0))
 
 	fmt.Println("-------------------")
 
 	//structs
-	testStruct(messageToSendSimple{
-		phoneNumber: 148255510981,
-		message:     "Thanks for signing up",
+	chapters_1_4.TestStruct(chapters_1_4.MessageToSendSimple{
+		PhoneNumber: 148255510981,
+		Message:     "Thanks for signing up",
 	})
-	testStruct(messageToSendSimple{
-		phoneNumber: 148255510982,
-		message:     "Love to have you aboard!",
+	chapters_1_4.TestStruct(chapters_1_4.MessageToSendSimple{
+		PhoneNumber: 148255510982,
+		Message:     "Love to have you aboard!",
 	})
-	testStruct(messageToSendSimple{
-		phoneNumber: 148255510983,
-		message:     "We're so excited to have you",
+	chapters_1_4.TestStruct(chapters_1_4.MessageToSendSimple{
+		PhoneNumber: 148255510983,
+		Message:     "We're so excited to have you",
 	})
-	myCar := car{}
+	myCar := chapters_1_4.Car{}
 	myCar.FrontWheel.Radius = 5
 	println(myCar.BackWheel.Material)
 	println(myCar.Height)
 
 	//nested structs
-	testNestedStruct(messageToSend{
-		message: "you have an appointment tommorow",
-		sender: user{
-			name:   "Brenda Halafax",
-			number: 16545550987,
+	chapters_1_4.TestNestedStruct(chapters_1_4.MessageToSend{
+		Message: "you have an appointment tommorow",
+		Sender: chapters_1_4.User{
+			Name:   "Brenda Halafax",
+			Number: 16545550987,
 		},
-		recipient: user{
-			name:   "Sally Sue",
-			number: 19035558973,
-		},
-	})
-	testNestedStruct(messageToSend{
-		message: "you have an event tommorow",
-		sender: user{
-			number: 16545550987,
-		},
-		recipient: user{
-			name:   "Suzie Sall",
-			number: 19035558973,
+		Recipient: chapters_1_4.User{
+			Name:   "Sally Sue",
+			Number: 19035558973,
 		},
 	})
-	testNestedStruct(messageToSend{
-		message: "you have an party tommorow",
-		sender: user{
-			name: "Njorn Halafax",
+	chapters_1_4.TestNestedStruct(chapters_1_4.MessageToSend{
+		Message: "you have an event tomorrow",
+		Sender: chapters_1_4.User{
+			Number: 16545550987,
 		},
-		recipient: user{
-			name:   "Becky Sue",
-			number: 19035558973,
-		},
-	})
-	testNestedStruct(messageToSend{
-		message: "you have a birthday tommorow",
-		sender: user{
-			name:   "Eli Halafax",
-			number: 16545550987,
-		},
-		recipient: user{
-			number: 19035558973,
+		Recipient: chapters_1_4.User{
+			Name:   "Suzie Sall",
+			Number: 19035558973,
 		},
 	})
-	testNestedStruct(messageToSend{
-		message: "you have a birthday tommorow",
-		sender: user{
-			name:   "Jason Bjorn",
-			number: 16545550987,
+	chapters_1_4.TestNestedStruct(chapters_1_4.MessageToSend{
+		Message: "you have an party tomorrow",
+		Sender: chapters_1_4.User{
+			Name: "Njorn Halafax",
 		},
-		recipient: user{
-			name: "Jim Bond",
+		Recipient: chapters_1_4.User{
+			Name:   "Becky Sue",
+			Number: 19035558973,
+		},
+	})
+	chapters_1_4.TestNestedStruct(chapters_1_4.MessageToSend{
+		Message: "you have a birthday tomorrow",
+		Sender: chapters_1_4.User{
+			Name:   "Eli Halafax",
+			Number: 16545550987,
+		},
+		Recipient: chapters_1_4.User{
+			Number: 19035558973,
+		},
+	})
+	chapters_1_4.TestNestedStruct(chapters_1_4.MessageToSend{
+		Message: "you have a birthday tomorrow",
+		Sender: chapters_1_4.User{
+			Name:   "Jason Bjorn",
+			Number: 16545550987,
+		},
+		Recipient: chapters_1_4.User{
+			Name: "Jim Bond",
 		},
 	})
 
@@ -137,9 +141,9 @@ func main() {
 	println(myCar2.Model)
 
 	// embedded truck
-	var lanesTruck = truck{
+	var lanesTruck = chapters_1_4.Truck{
 		BedSize: 10,
-		car: car{
+		Car: chapters_1_4.Car{
 			Make:  "toyota",
 			Model: "camry",
 		},
@@ -152,47 +156,66 @@ func main() {
 	fmt.Println(lanesTruck.Make)
 	fmt.Println(lanesTruck.Model)
 
-	testEmb(sender{
-		rateLimit: 10000,
-		user_emb: user_emb{
-			name:   "Deborah",
-			number: 18055558790,
+	chapters_1_4.TestEmb(chapters_1_4.Sender{
+		RateLimit: 10000,
+		User_emb: chapters_1_4.User_emb{
+			Name:   "Deborah",
+			Number: 18055558790,
 		},
 	})
-	testEmb(sender{
-		rateLimit: 5000,
-		user_emb: user_emb{
-			name:   "Sarah",
-			number: 19055558790,
+	chapters_1_4.TestEmb(chapters_1_4.Sender{
+		RateLimit: 5000,
+		User_emb: chapters_1_4.User_emb{
+			Name:   "Sarah",
+			Number: 19055558790,
 		},
 	})
-	testEmb(sender{
-		rateLimit: 1000,
-		user_emb: user_emb{
-			name:   "Sally",
-			number: 19055558790,
+	chapters_1_4.TestEmb(chapters_1_4.Sender{
+		RateLimit: 1000,
+		User_emb: chapters_1_4.User_emb{
+			Name:   "Sally",
+			Number: 19055558790,
 		},
 	})
 
 	// methods associated to structs
 
-	var r = rect{
-		width:  5,
-		height: 10,
+	var r = chapters_1_4.Rect{
+		Width:  5,
+		Height: 10,
 	}
 
-	fmt.Println(r.area())
+	fmt.Println(r.Area())
 	// prints 50
-	testAuth(authenticationInfo{
-		username: "Google",
-		password: "12345",
+	chapters_1_4.TestAuth(chapters_1_4.AuthenticationInfo{
+		Username: "Google",
+		Password: "12345",
 	})
-	testAuth(authenticationInfo{
-		username: "Bing",
-		password: "98765",
+	chapters_1_4.TestAuth(chapters_1_4.AuthenticationInfo{
+		Username: "Bing",
+		Password: "98765",
 	})
-	testAuth(authenticationInfo{
-		username: "DDG",
-		password: "76921",
+	chapters_1_4.TestAuth(chapters_1_4.AuthenticationInfo{
+		Username: "DDG",
+		Password: "76921",
 	})
+
+	// interfaces
+	chapters_1_4.TestRec(chapters_1_4.SendingReport{
+		ReportName:    "First Report",
+		NumberOfSends: 10,
+	})
+	chapters_1_4.TestRec(chapters_1_4.BirthdayMessage{
+		RecipientName: "John Doe",
+		BirthdayTime:  time.Date(1994, 03, 21, 0, 0, 0, 0, time.UTC),
+	})
+	chapters_1_4.TestRec(chapters_1_4.SendingReport{
+		ReportName:    "First Report",
+		NumberOfSends: 10,
+	})
+	chapters_1_4.TestRec(chapters_1_4.BirthdayMessage{
+		RecipientName: "Bill Deer",
+		BirthdayTime:  time.Date(1934, 05, 01, 0, 0, 0, 0, time.UTC),
+	})
+
 }
