@@ -12,8 +12,6 @@ func getMessageCosts(messages []string) []float64 {
 
 }
 
-// don't edit below this line
-
 func Test(messages []string) {
 	costs := getMessageCosts(messages)
 	fmt.Println("Messages:")
@@ -65,11 +63,36 @@ func sum(nums ...float64) float64 {
 	return s
 }
 
-// don't edit below this line
-
 func TestNum(nums ...float64) {
 	total := sum(nums...)
 	fmt.Printf("Summing %v costs...\n", len(nums))
 	fmt.Printf("Bill for the month: %.2f\n", total)
+	fmt.Println("===== END REPORT =====")
+}
+
+type Cost struct {
+	Day int
+	Val float64
+}
+
+func getCostsByDay(costs []Cost) []float64 {
+	costsByDay := []float64{}
+	for i := 0; i < len(costs); i++ {
+		cost := costs[i]
+		for cost.Day >= len(costsByDay) {
+			costsByDay = append(costsByDay, 0.0)
+		}
+		costsByDay[cost.Day] += cost.Val
+	}
+	return costsByDay
+}
+
+func TestSliceAppend(costs []Cost) {
+	fmt.Printf("Creating daily buckets for %v costs...\n", len(costs))
+	costsByDay := getCostsByDay(costs)
+	fmt.Println("Costs by day:")
+	for i := 0; i < len(costsByDay); i++ {
+		fmt.Printf(" - Day %v: %.2f\n", i, costsByDay[i])
+	}
 	fmt.Println("===== END REPORT =====")
 }
