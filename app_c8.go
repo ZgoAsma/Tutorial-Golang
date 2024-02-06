@@ -188,8 +188,8 @@ func main() {
 	for i, fruit := range fruits {
 		fmt.Println(i, fruit)
 	}
-	// 0 apple
-	// 1 banana
-	// 2 grape
+
+	fmt.Println("create conflict!")
+	fmt.Println("Chapter 8 is over!")
 
 }
