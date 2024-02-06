@@ -4,6 +4,7 @@ import (
 	"example/hello/chapter_8/arrays"
 	make_slice "example/hello/chapter_8/make"
 	"example/hello/chapter_8/matrixes"
+	"example/hello/chapter_8/ranges"
 	"example/hello/chapter_8/slices"
 	"fmt"
 )
@@ -191,5 +192,15 @@ func main() {
 	// 0 apple
 	// 1 banana
 	// 2 grape
+
+	badWords := []string{"crap", "shoot", "dang", "frick"}
+	message := []string{"hey", "there", "john"}
+	ranges.Test(message, badWords)
+
+	message = []string{"ugh", "oh", "my", "frick"}
+	ranges.Test(message, badWords)
+
+	message = []string{"what", "the", "shoot", "I", "hate", "that", "crap"}
+	ranges.Test(message, badWords)
 
 }
