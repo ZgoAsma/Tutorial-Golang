@@ -1,10 +1,10 @@
 package main
 
 import (
-	"example/hello/chapter_10/defering"
+	"example/hello/chapter_10/anony"
+	"example/hello/chapter_10/closures"
 	"example/hello/chapter_10/math"
 	"fmt"
-	"sort"
 )
 
 func main() {
@@ -20,52 +20,29 @@ func main() {
 
 	fmt.Println(doubleFunc(5))
 	// prints 10
-	users := map[string]defering.User{
-		"john": {
-			Name:   "john",
-			Number: 18965554631,
-			Admin:  true,
-		},
-		"elon": {
-			Name:   "elon",
-			Number: 19875556452,
-			Admin:  true,
-		},
-		"breanna": {
-			Name:   "breanna",
-			Number: 98575554231,
-			Admin:  false,
-		},
-		"kade": {
-			Name:   "kade",
-			Number: 10765557221,
-			Admin:  false,
-		},
-	}
 
-	fmt.Println("Initial users:")
-	usersSorted := []string{}
-	for name := range users {
-		usersSorted = append(usersSorted, name)
-	}
-	sort.Strings(usersSorted)
-	for _, name := range usersSorted {
-		fmt.Println(" -", name)
-	}
-	fmt.Println("====================================")
+	harryPotterAggregator := closures.Concatter()
+	harryPotterAggregator("Mr.")
+	harryPotterAggregator("and")
+	harryPotterAggregator("Mrs.")
+	harryPotterAggregator("Dursley")
+	harryPotterAggregator("of")
+	harryPotterAggregator("number")
+	harryPotterAggregator("four,")
+	harryPotterAggregator("Privet")
 
-	defering.Test(users, "john")
-	defering.Test(users, "santa")
-	defering.Test(users, "kade")
+	fmt.Println(harryPotterAggregator("Drive"))
+	// Mr. and Mrs. Dursley of number four, Privet Drive
 
-	fmt.Println("Final users:")
-	usersSorted = []string{}
-	for name := range users {
-		usersSorted = append(usersSorted, name)
-	}
-	sort.Strings(usersSorted)
-	for _, name := range usersSorted {
-		fmt.Println(" -", name)
-	}
-	fmt.Println("====================================")
+	nums := []int{1, 2, 3, 4, 5}
+
+	// Here we define an anonymous function that doubles an int
+	// and pass it to DoMath
+	allNumsDoubled := anony.DoMath(func(x int) int {
+		return x + x
+	}, nums)
+
+	fmt.Println(allNumsDoubled)
+	// prints:
+	// [2 4 6 8 10]
 }
