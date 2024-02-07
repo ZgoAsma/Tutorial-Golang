@@ -87,8 +87,54 @@ func main() {
 
 	testProf(messages)
 	testProf(messages2)
+	c := car{
+		color: "white",
+	}
+	c.setColor("blue")
+	fmt.Println(c.color)
+	// prints "blue"
+	c = car{
+		color: "white",
+	}
+	c.setColorAlt("blue")
+	fmt.Println(c.color)
+	// prints "white"
+
+	cc := circle{
+		x:      1,
+		y:      2,
+		radius: 4,
+	}
+
+	// notice c is not a pointer in the calling function
+	// but the method still gains access to a pointer to c
+	cc.grow()
+	fmt.Println(cc.radius)
+	// prints 8
+
 }
 
+type circle struct {
+	x      int
+	y      int
+	radius int
+}
+
+func (c *circle) grow() {
+	c.radius *= 2
+}
+
+type car struct {
+	color string
+}
+
+func (c *car) setColor(color string) {
+	c.color = color
+}
+
+func (c car) setColorAlt(color string) {
+	c.color = color
+}
 func removeProfanity(message *string) {
 	if message == nil {
 		return
